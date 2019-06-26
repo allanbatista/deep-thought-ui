@@ -21,7 +21,7 @@ const authRoutes = [{
     path: '/',
     name: 'dashboard',
     component: Dashboard,
-    meta: { title: 'Dashboard', requireAuth: true }
+    meta: { title: 'Dashboard', auth: true }
   }]
 }]
 
@@ -29,10 +29,10 @@ const unAuthRoutes = [{
   path: '',
   component: UnAuth,
   children: [{
-    path: '/login',
     name: 'login',
+    path: '/login',
     component: Login,
-    meta: { title: 'Login', requireAuth: false }
+    meta: { title: 'Login', auth: false }
   }]
 }]
 
@@ -51,21 +51,14 @@ router.beforeEach((to, from, next) => {
   // otherwise use default 'Transparência na Pesagem'
   document.title = `Deep Throught | ${to.meta.title || ''}`
 
-  // get current route
-  let nextTo = from.name
-
   // Check if route requires authentication
   // If it requires, redirect to Login
   // If not, let to pass
-  if (to.matched.some(record => record.meta.requireAuth)) {
-    // Check if user is not authenticated
-    if (!store.getters.isAuthenticated) {
-      // change route to login
-      nextTo = 'login'
-    }
+  if (to.matched.some(record => record.meta.auth) && !store.getters.isAuthenticated) {
+    next({ name: 'login' })
+  } else {
+    next()
   }
-  // go to route
-  next(nextTo)
 })
 
 export default router
