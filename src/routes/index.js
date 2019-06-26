@@ -10,7 +10,7 @@ import UnAuth from '@/views/_layouts/UnAuth.vue'
 
 // Views
 import Dashboard from '@/views/Dashboard.vue'
-import Login from '@/views/Login.vue'
+import Login from '@/views/auth/Login.vue'
 
 Vue.use(Router)
 
