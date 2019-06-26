@@ -1,0 +1,7 @@
+const GET_USER = 'GET_USER'
+const REMOVE_JWT_TOKEN = 'REMOVE_JWT_TOKEN'
+
+export default {
+  GET_USER,
+  REMOVE_JWT_TOKEN
+}
