@@ -5,12 +5,12 @@ import Router from 'vue-router'
 import store from '@/store/index'
 
 // Layouts
-import Auth from '@/views/_layouts/Auth.vue'
-import UnAuth from '@/views/_layouts/UnAuth.vue'
+import Auth from '@/components/layouts/Auth.vue'
+import UnAuth from '@/components/layouts/UnAuth.vue'
 
 // Views
-import Dashboard from '@/views/Dashboard.vue'
-import Login from '@/views/auth/Login.vue'
+import Dashboard from '@/components/views/Dashboard.vue'
+import Login from '@/components/views/auth/Login.vue'
 
 Vue.use(Router)
 

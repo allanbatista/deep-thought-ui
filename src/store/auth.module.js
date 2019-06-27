@@ -3,7 +3,7 @@ import {
   SET_JWT_TOKEN,
   LOGIN
 } from '@/store/auth.actions'
-import JwtService from '../clients/node_modules/@/services/jwt'
+import JwtService from '@/services/jwt'
 
 import ApiClient from '@/clients/api'
 

@@ -19,4 +19,4 @@ class ApiClient {
   async delete (url) { return this.http.delete(url) }
 }
 
-export default ApiClient()
+export default new ApiClient()
