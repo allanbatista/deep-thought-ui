@@ -1,25 +1,21 @@
 <template>
   <login-card>
     <h1>Access your account</h1>
-    <el-button class='btn--block' @click="onSingInWithGoogle">
-      <img
-        src="@/assets/icons/google-icon.svg"
-        width="20"
-        height="20"
-      >
-    </el-button>
+    <google-sing-in-button @click.native="singInWithGoogle"></google-sing-in-button>
   </login-card>
 </template>
 
 <script>
 import LoginCard from '@/components/ui/cards/LoginCard'
+import GoogleSingInButton from '@/components/ui/buttons/GoogleSingInButton'
 
 export default {
   components: {
-    LoginCard
+    LoginCard,
+    GoogleSingInButton
   },
   methods: {
-    onSingInWithGoogle ($event) {
+    singInWithGoogle ($event) {
       console.log($event)
     }
   }
