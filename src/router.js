@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import Router from 'vue-router'
+import VueRouter from 'vue-router'
 
 // store
 import store from './store'
@@ -8,15 +8,11 @@ import store from './store'
 import Auth from '@/components/layouts/Auth.vue'
 import UnAuth from '@/components/layouts/UnAuth.vue'
 
-// Views
-import Dashboard from '@/components/views/Dashboard.vue'
-import Login from '@/components/views/auth/Login.vue'
-
 // actions
 import { AUTO_LOGIN } from './store/auth.actions'
 import { SHOW_MESSAGE_ERROR } from './store/message.actions'
 
-Vue.use(Router)
+Vue.use(VueRouter)
 
 const authRoutes = [{
   path: '',
@@ -24,24 +20,32 @@ const authRoutes = [{
   children: [{
     path: '/',
     name: 'dashboard',
-    component: Dashboard,
-    meta: { title: 'Dashboard', auth: true }
+    meta: { title: 'Dashboard', auth: true },
+    component: () => import('./components/views/Dashboard')
   }]
 }]
 
 const unAuthRoutes = [{
   path: '',
   component: UnAuth,
-  children: [{
-    name: 'login',
-    path: '/login',
-    component: Login,
-    meta: { title: 'Login', auth: false }
-  }]
+  children: [
+    {
+      name: 'login',
+      path: '/login',
+      meta: { title: 'Login', auth: false },
+      component: () => import('./components/views/auth/Login')
+    },
+    {
+      name: 'logout',
+      path: '/logout',
+      meta: { title: 'Logout', auth: false },
+      component: () => import('./components/views/auth/Logout')
+    }
+  ]
 }]
 
 // Create router
-const router = new Router({
+const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [

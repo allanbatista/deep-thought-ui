@@ -3,17 +3,3 @@
     <router-view></router-view>
   </el-container>
 </template>
-
-<script>
-export default {
-  beforeCreate () {
-    document.getElementsByTagName('body')[0].classList.add('un-auth')
-  }
-}
-</script>
-
-<style>
-.un-auth {
-  background-color: #fbfbfb;
-}
-</style>
