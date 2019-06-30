@@ -6,8 +6,12 @@
 </template>
 
 <script>
+// components
 import LoginCard from '@/components/ui/cards/LoginCard'
 import GoogleSingInButton from '@/components/ui/buttons/GoogleSingInButton'
+
+// actions
+import { LOGIN } from '@/store/auth.actions'
 
 export default {
   components: {
@@ -16,7 +20,11 @@ export default {
   },
   methods: {
     singInWithGoogle ($event) {
-      console.log($event)
+      this.$store
+        .dispatch(LOGIN)
+        .then(() => {
+          this.$router.push({ name: 'dashboard' })
+        })
     }
   }
 }

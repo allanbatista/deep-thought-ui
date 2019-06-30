@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 // store
-import store from '@/store/index'
+import store from './store'
 
 // Layouts
 import Auth from '@/components/layouts/Auth.vue'
@@ -11,6 +11,10 @@ import UnAuth from '@/components/layouts/UnAuth.vue'
 // Views
 import Dashboard from '@/components/views/Dashboard.vue'
 import Login from '@/components/views/auth/Login.vue'
+
+// actions
+import { AUTO_LOGIN } from './store/auth.actions'
+import { SHOW_MESSAGE_ERROR } from './store/message.actions'
 
 Vue.use(Router)
 
@@ -54,8 +58,19 @@ router.beforeEach((to, from, next) => {
   // Check if route requires authentication
   // If it requires, redirect to Login
   // If not, let to pass
-  if (to.matched.some(record => record.meta.auth) && !store.getters.isAuthenticated) {
-    next({ name: 'login' })
+  if (to.matched.some(record => record.meta.auth)) {
+    store
+      .dispatch(AUTO_LOGIN)
+      .then(() => {
+        if (!store.getters.isAuthenticated) {
+          next({ name: 'login' })
+        }
+        next()
+      })
+      .catch(err => {
+        store.dispatch(SHOW_MESSAGE_ERROR, err)
+        next({ name: 'login' })
+      })
   } else {
     next()
   }
