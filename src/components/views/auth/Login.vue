@@ -1,7 +1,6 @@
 <template>
   <login-card>
-    <app-logo :size="mid"></app-logo>
-    <h1 class="text-2xl font-medium text-center mb-8">Acess your account</h1>
+    <h1 class="text-2xl font-medium text-center my-8">Acess your account</h1>
     <google-sing-in-button @click.native="singInWithGoogle"></google-sing-in-button>
   </login-card>
 </template>
