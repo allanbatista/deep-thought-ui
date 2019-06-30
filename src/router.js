@@ -14,43 +14,39 @@ import { SHOW_MESSAGE_ERROR } from './store/message.actions'
 
 Vue.use(VueRouter)
 
-const authRoutes = [{
-  path: '',
-  component: Auth,
-  children: [{
-    path: '/',
-    name: 'dashboard',
-    meta: { title: 'Dashboard', auth: true },
-    component: () => import('./components/views/Dashboard')
-  }]
-}]
-
-const unAuthRoutes = [{
-  path: '',
-  component: UnAuth,
-  children: [
-    {
-      name: 'login',
-      path: '/login',
-      meta: { title: 'Login', auth: false },
-      component: () => import('./components/views/auth/Login')
-    },
-    {
-      name: 'logout',
-      path: '/logout',
-      meta: { title: 'Logout', auth: false },
-      component: () => import('./components/views/auth/Logout')
-    }
-  ]
-}]
-
-// Create router
+// Create router instance
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
-    ...authRoutes,
-    ...unAuthRoutes
+    {
+      path: '',
+      component: Auth,
+      children: [{
+        path: '/',
+        name: 'dashboard',
+        meta: { title: 'Dashboard', auth: true },
+        component: () => import('./components/views/Dashboard')
+      }]
+    },
+    {
+      path: '',
+      component: UnAuth,
+      children: [
+        {
+          name: 'login',
+          path: '/login',
+          meta: { title: 'Login', auth: false },
+          component: () => import('./components/views/auth/Login.vue')
+        },
+        {
+          name: 'logout',
+          path: '/logout',
+          meta: { title: 'Logout', auth: false },
+          component: () => import('./components/views/auth/Logout')
+        }
+      ]
+    }
   ]
 })
 
@@ -62,21 +58,20 @@ router.beforeEach((to, from, next) => {
   // Check if route requires authentication
   // If it requires, redirect to Login
   // If not, let to pass
+  let nextPath = {}
   if (to.matched.some(record => record.meta.auth)) {
     store
       .dispatch(AUTO_LOGIN)
       .then(() => {
         if (!store.getters.isAuthenticated) {
-          next({ name: 'login' })
+          nextPath = { name: 'login' }
         }
-        next()
       })
       .catch(err => {
         store.dispatch(SHOW_MESSAGE_ERROR, err)
-        next({ name: 'login' })
       })
   } else {
-    next()
+    next(nextPath)
   }
 })
 

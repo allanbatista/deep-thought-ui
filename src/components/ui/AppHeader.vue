@@ -1,5 +1,5 @@
 <template>
-  <div class='header'></div>
+  <el-header></el-header>
 </template>
 
 <script>
@@ -7,12 +7,3 @@ export default {
 
 }
 </script>
-
-<style lang='scss'>
-.header {
-  color: red;
-  display: block;
-  height: 40px;
-  width: 100%;
-}
-</style>
