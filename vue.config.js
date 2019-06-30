@@ -2,9 +2,11 @@ module.exports = {
   css: {
     loaderOptions: {
       sass: {
+        // Tailwindcss
+        // docs: https://tailwindcss.com/
         data: `
-        @import '~element-ui/lib/theme-chalk/index.css';
-        @import "@/assets/scss/_main.scss";
+        @import "~element-ui/lib/theme-chalk/index.css";
+        @import "~tailwindcss/dist/tailwind.min.css";
         `
       }
     }

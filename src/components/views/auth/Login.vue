@@ -1,6 +1,7 @@
 <template>
   <login-card>
-    <h1>Access your account</h1>
+    <app-logo :size="mid"></app-logo>
+    <h1 class="text-2xl font-medium text-center mb-8">Acess your account</h1>
     <google-sing-in-button @click.native="singInWithGoogle"></google-sing-in-button>
   </login-card>
 </template>
@@ -21,6 +22,3 @@ export default {
   }
 }
 </script>
-
-<style>
-</style>
