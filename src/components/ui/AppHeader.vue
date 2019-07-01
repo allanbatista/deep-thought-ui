@@ -1,6 +1,6 @@
 <template>
-  <el-header>
-    <nav class='flex items-center justify-between pt-2'>
+  <header class='el-header h-16'>
+    <nav class='flex items-center justify-between pt-3'>
       <ul>
         <li>
           <a href="/">
@@ -10,14 +10,14 @@
       </ul>
       <ul class='items-center flex'>
         <li class='ml-4'>
-          <a class='text-white font-bold text-lg' href="">Questions</a>
+          <a class='text-white text-md' href="">Questions</a>
         </li>
         <li class='ml-12'>
           <auth-avatar></auth-avatar>
         </li>
       </ul>
     </nav>
-  </el-header>
+  </header>
 </template>
 <script>
 import AppLogo from './AppLogo'
