@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import VueRouter from 'vue-router'
+import Router from 'vue-router'
 
 // store
 import store from './store'
@@ -12,10 +12,10 @@ import UnAuth from '@/components/layouts/UnAuth.vue'
 import { AUTO_LOGIN } from './store/auth.actions'
 import { SHOW_MESSAGE_ERROR } from './store/message.actions'
 
-Vue.use(VueRouter)
+Vue.use(Router)
 
 // Create router instance
-const router = new VueRouter({
+const router = new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
@@ -58,20 +58,21 @@ router.beforeEach((to, from, next) => {
   // Check if route requires authentication
   // If it requires, redirect to Login
   // If not, let to pass
-  let nextPath = {}
   if (to.matched.some(record => record.meta.auth)) {
     store
       .dispatch(AUTO_LOGIN)
       .then(() => {
         if (!store.getters.isAuthenticated) {
-          nextPath = { name: 'login' }
+          next({ name: 'login' })
         }
+        next()
       })
       .catch(err => {
         store.dispatch(SHOW_MESSAGE_ERROR, err)
+        next({ name: 'login' })
       })
   } else {
-    next(nextPath)
+    next()
   }
 })
 

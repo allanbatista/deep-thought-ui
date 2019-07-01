@@ -7,11 +7,10 @@ import message from './message.module'
 
 Vue.use(Vuex)
 
-const store = new Vuex.Store({
+export default new Vuex.Store({
   modules: {
     auth,
     message
-  }
+  },
+  strict: process.env.NODE_ENV !== 'production'
 })
-
-export default store

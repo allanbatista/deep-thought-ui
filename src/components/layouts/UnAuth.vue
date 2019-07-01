@@ -1,5 +1,13 @@
 <template>
-  <el-container>
-    <router-view />
-  </el-container>
+  <base-content></base-content>
 </template>
+
+<script>
+import BaseContent from './BaseContent'
+
+export default {
+  components: {
+    BaseContent
+  }
+}
+</script>

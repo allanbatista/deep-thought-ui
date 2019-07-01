@@ -1,28 +1,21 @@
 <template>
-  <img
-    src="@/assets/logo.png"
+  <base-image
     alt="Deep Through logo"
-    :class="this.$data[this.size]"
-  >
+    :src="(this.white ? require('@/assets/logo-white.png') : require('@/assets/logo.png'))"
+    :size=size
+  ></base-image>
 </template>
 <script>
+import BaseImage from './BaseImage'
 export default {
-  data: function () {
-    return {
-      // Defined classes to assign size
-      sm: 'w-8 h-8',
-      md: 'w-12 h-12',
-      lg: 'w-16 h-16'
-    }
+  components: {
+    BaseImage
   },
   props: {
-    // Define logo size
-    // small, mid, large
-    size: {
-      type: String,
-      required: false,
-      default: 'md',
-      validator: (value) => ['sm', 'md', 'lg'].includes(value)
+    size: String,
+    white: {
+      type: Boolean,
+      default: false
     }
   }
 }

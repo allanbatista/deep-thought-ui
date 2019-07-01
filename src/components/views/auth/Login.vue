@@ -6,6 +6,9 @@
 </template>
 
 <script>
+// vuex
+import { mapGetters } from 'vuex'
+
 // components
 import LoginCard from '@/components/ui/cards/LoginCard'
 import GoogleSingInButton from '@/components/ui/buttons/GoogleSingInButton'
@@ -26,6 +29,14 @@ export default {
           this.$router.push({ name: 'dashboard' })
         })
     }
+  },
+  computed: mapGetters(['isAuthenticated']),
+  mounted () {
+    // Send to dashboard a authenticated user
+    if (this.isAuthenticated) {
+      this.$router.next({ name: 'dashboard' })
+    }
   }
+
 }
 </script>

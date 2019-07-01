@@ -1,16 +1,18 @@
 <template>
   <div>
     <app-header></app-header>
-    <router-view />
+    <base-content></base-content>
   </div>
 </template>
 
 <script>
+import BaseContent from './BaseContent'
 import AppHeader from '@/components/ui/AppHeader'
 
 export default {
   components: {
-    AppHeader
+    AppHeader,
+    BaseContent
   }
 }
 </script>
