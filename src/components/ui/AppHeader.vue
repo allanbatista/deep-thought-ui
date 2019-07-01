@@ -1,6 +1,6 @@
 <template>
   <el-header>
-    <nav class='flex items-center justify-between pt-4'>
+    <nav class='flex items-center justify-between pt-2'>
       <ul>
         <li>
           <a href="/">

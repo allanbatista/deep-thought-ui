@@ -1,5 +1,5 @@
 <template>
-  <el-card class='max-w-lg mx-auto w-full mt-56 py-8 px-4'>
+  <el-card class='max-w-md mx-auto w-full mt-40 py-6 px-4'>
     <app-logo
       class='mx-auto'
       size='lg'
