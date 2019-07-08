@@ -53,7 +53,7 @@ const router = new Router({
 router.beforeEach((to, from, next) => {
   // Custom title for page, if exists
   // otherwise use default 'Transparência na Pesagem'
-  document.title = `Deep Throught | ${to.meta.title || ''}`
+  document.title = `Deep Thought | ${to.meta.title || ''}`
 
   // Check if route requires authentication
   // If it requires, redirect to Login

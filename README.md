@@ -1,4 +1,4 @@
-# deep-throught-ui
+# deep-thought-ui
 
 ## Project setup
 ```
