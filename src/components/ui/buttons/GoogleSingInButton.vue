@@ -1,7 +1,8 @@
 <template>
-  <el-button
-    type='default'
-    class='w-full'
+  <a
+    class='el-button el-button--default w-full'
+    :href="this.authSingInUrl"
+    target='_blank'
   >
     <div class='flex items-center p-2 justify-center'>
       <img
@@ -12,5 +13,12 @@
         Sing In with Google
       </span>
     </div>
-  </el-button>
+  </a>
 </template>
+<script>
+import { mapGetters } from 'vuex'
+
+export default {
+  computed: mapGetters(['authSingInUrl'])
+}
+</script>
