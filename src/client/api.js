@@ -8,10 +8,10 @@ class ApiClient {
     this._http.defaults.headers['Content-Type'] = 'application/json'
   }
   setAuthToken () {
-    this._http.defaults.headers.common.Authorization = `Bearer ${JwtService.getToken()}`
+    this._http.defaults.headers.common.Authentication = JwtService.getToken()
   }
   removeAuthToken () {
-    delete this._http.defaults.headers.common.Authorization
+    delete this._http.defaults.headers.common.Authentication
   }
   async query (url, params) { return this._http.get(url, { params }) }
   async get (url) { return this._http.get(url) }
