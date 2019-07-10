@@ -26,8 +26,8 @@ const actions = {
     return Promise.reject(new Error('JWT Token is not set'))
   },
   async [LOGIN] ({ commit }, { jwt }) {
-    JwtService.setToken(jwt)
     try {
+      JwtService.setToken(jwt)
       const user = await AuthService.login()
       return commit(SET_AUTH_USER, { user })
     } catch (err) {
