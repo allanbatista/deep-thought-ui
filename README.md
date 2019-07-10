@@ -30,5 +30,12 @@ npm run lint
 npm run test:unit
 ```
 
+### Run with docker
+```
+docker-compose up --build
+```
+
+More information in docs: [docs/docker](docs/docker.md)
+
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
