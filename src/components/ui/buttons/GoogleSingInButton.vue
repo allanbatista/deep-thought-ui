@@ -2,7 +2,6 @@
   <a
     class='el-button el-button--default w-full'
     :href="this.authSingInUrl"
-    target='_blank'
   >
     <div class='flex items-center p-2 justify-center'>
       <img
