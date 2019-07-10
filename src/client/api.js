@@ -1,5 +1,5 @@
 import axios from 'axios'
-import JwtService from '@/services/jwt'
+import JwtService from '../services/jwt'
 
 class ApiClient {
   constructor () {
