@@ -13,11 +13,11 @@ class ApiClient {
   removeAuthToken () {
     delete this._http.defaults.headers.common.Authorization
   }
-  query (url, params) { return this._http.get(url, { params }) }
-  get (url) { return this._http.get(url) }
-  post (url, data) { return this._http.post(url, { data }) }
-  put (url, data) { return this._http.put(url, { data }) }
-  delete (url) { return this._http.delete(url) }
+  async query (url, params) { return this._http.get(url, { params }) }
+  async get (url) { return this._http.get(url) }
+  async post (url, data) { return this._http.post(url, { data }) }
+  async put (url, data) { return this._http.put(url, { data }) }
+  async delete (url) { return this._http.delete(url) }
 }
 
 export default new ApiClient()
