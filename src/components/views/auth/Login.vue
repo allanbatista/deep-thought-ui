@@ -25,7 +25,7 @@ export default {
   created () {
     // check if jwt was given
     if (this.$route.query.jwt) {
-      this.$store.dispatch(LOGIN, this.$route.query.jwt)
+      this.$store.dispatch(LOGIN, { jwt: this.$route.query.jwt })
         .then(() => this.$router.next({ name: 'dashboard' }))
         .catch(() => { })
     }
