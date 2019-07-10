@@ -1,17 +1,24 @@
-const tokenKey = process.env.VUE_APP_JWT_TOKEN_KEY
+import ApiClient from '../client/api'
+
+const TOKEN_KEY = process.env.VUE_APP_JWT_TOKEN_KEY
 
 /**
  * Interact with `localStorage` through `VUE_APP_JWT_TOKEN_KEY`
  */
 const JwtService = {
-  setToken (token) {
-    localStorage.setItem(tokenKey, token)
-  },
   getToken () {
-    return localStorage.getItem(tokenKey)
+    return localStorage.getItem(TOKEN_KEY)
   },
   removeToken () {
-    localStorage.removeItem(tokenKey)
+    localStorage.removeItem(TOKEN_KEY)
+    ApiClient.removeAuthToken()
+  },
+  setToken (token) {
+    localStorage.setItem(TOKEN_KEY, token)
+    ApiClient.setAuthToken()
+  },
+  tokenIsValid () {
+    return !!this.getToken()
   }
 }
 
