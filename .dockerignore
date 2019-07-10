@@ -1,0 +1,20 @@
+# IDE
+.vscode
+.editorconfig
+
+# git
+.git
+
+# Node
+node_modules
+
+# Docs
+README.md
+
+# Docker
+Dockerfile
+docker-compose.yml
+
+# Remove all env files
+# it should be configurated via env var
+.env*
