@@ -1,6 +1,8 @@
+import ApiClient from '../client/api'
+import loggerClient from '../client/logger'
+import AuthService from '../services/auth'
 import GoogleAuthService from '../services/google-auth'
 import JwtService from '../services/jwt'
-import AuthService from '../services/auth'
 import { AUTO_LOGIN, LOGIN, LOGOUT, REMOVE_AUTH_USER, SET_AUTH_USER } from './auth.actions'
 
 const state = {
@@ -15,27 +17,39 @@ const getters = {
 
 const actions = {
   async [AUTO_LOGIN] ({ commit }) {
-    if (JwtService.tokenIsValid()) {
-      try {
-        const user = await AuthService.login()
-        return commit(SET_AUTH_USER, { user })
-      } catch (err) {
-        return console.log(err)
-      }
+    if (!JwtService.tokenIsValid()) {
+      // TODO: Use message error here
+      loggerClient.error(new Error('JWT Token is not set'))
+      commit(REMOVE_AUTH_USER)
     }
-    return Promise.reject(new Error('JWT Token is not set'))
+    try {
+      ApiClient.setAuthToken()
+      const user = await AuthService.login()
+      commit(SET_AUTH_USER, { user })
+    } catch (err) {
+      // TODO: Use message error here
+      loggerClient.error(err)
+      commit(REMOVE_AUTH_USER)
+    }
   },
   async [LOGIN] ({ commit }, { jwt }) {
     try {
       JwtService.setToken(jwt)
       const user = await AuthService.login()
-      return commit(SET_AUTH_USER, { user })
+      commit(SET_AUTH_USER, { user })
     } catch (err) {
-      return console.log(err)
+      // TODO: Use message error here
+      loggerClient.error(err)
+      commit(REMOVE_AUTH_USER)
     }
   },
   [LOGOUT] ({ commit }) {
-    commit(REMOVE_AUTH_USER)
+    try {
+      commit(REMOVE_AUTH_USER)
+    } catch (err) {
+      // TODO: Use message error here
+      loggerClient.error(err)
+    }
   }
 }
 

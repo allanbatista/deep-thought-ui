@@ -1,7 +1,7 @@
 import ApiClient from '../client/api'
 
 const AuthService = {
-  _serialize (data) {
+  async _serialize (data) {
     return {
       id: data.id,
       name: data.name,
@@ -11,7 +11,7 @@ const AuthService = {
   },
   async login () {
     const res = await ApiClient.get('/user')
-    return this._serialize(res.body)
+    return this._serialize(res.data)
   }
 }
 

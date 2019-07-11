@@ -22,17 +22,16 @@ export default {
     GoogleSingInButton
   },
   computed: mapGetters(['isAuthenticated']),
-  created () {
+  async created () {
     // check if jwt was given
     if (this.$route.query.jwt) {
-      this.$store.dispatch(LOGIN, { jwt: this.$route.query.jwt })
-        .then(() => this.$router.next({ name: 'dashboard' }))
-        .catch(() => { })
+      await this.$store.dispatch(LOGIN, { jwt: this.$route.query.jwt })
+      this.$router.push({ name: 'dashboard' })
     }
   },
-  mounted () {
+  beforeMount () {
     // Send to dashboard a authenticated user
-    if (this.isAuthenticated) this.$router.next({ name: 'dashboard' })
+    if (this.isAuthenticated) this.$router.push({ name: 'dashboard' })
   }
 
 }
