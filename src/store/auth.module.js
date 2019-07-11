@@ -10,8 +10,8 @@ const state = {
 }
 
 const getters = {
-  authUser: () => state.authUser,
-  isAuthenticated: () => !!state.authUser && JwtService.tokenIsValid(),
+  authUser: state => state.authUser,
+  isAuthenticated: state => !!state.authUser && JwtService.tokenIsValid(),
   authSingInUrl: () => GoogleAuthService.singInUrl()
 }
 
