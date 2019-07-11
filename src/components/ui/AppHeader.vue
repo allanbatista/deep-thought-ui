@@ -10,10 +10,13 @@
       </ul>
       <ul class='items-center flex'>
         <li class='ml-4'>
-          <a class='text-white text-md' href="">Questions</a>
+          <a
+            class='text-white text-md'
+            href=""
+          >Questions</a>
         </li>
         <li class='ml-12'>
-          <auth-avatar></auth-avatar>
+          <auth-user-avatar></auth-user-avatar>
         </li>
       </ul>
     </nav>
@@ -21,12 +24,12 @@
 </template>
 <script>
 import AppLogo from './AppLogo'
-import AuthAvatar from './auth/AuthAvatar'
+import AuthUserAvatar from './auth/AuthUserAvatar'
 
 export default {
   components: {
     AppLogo,
-    AuthAvatar
+    AuthUserAvatar
   }
 }
 </script>
