@@ -2,7 +2,8 @@
   <base-image
     class='rounded-full'
     :size=size
-    :src=authUser.picture
+    :src=authUser.avatarUrl
+    :alt="`${authUser.email} Avatar`"
   ></base-image>
 </template>
 
