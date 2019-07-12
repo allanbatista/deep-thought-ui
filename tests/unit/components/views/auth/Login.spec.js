@@ -1,11 +1,30 @@
-import GoogleSingInButton from '@/components/ui/buttons/GoogleSingInButton.vue'
+import VueRouter from 'vue-router'
+import { createLocalVue, shallowMount } from '@vue/test-utils'
+
+// coponents
 import Login from '@/components/views/auth/Login.vue'
-import { shallowMount } from '@vue/test-utils'
+import GoogleSingInButton from '@/components/ui/buttons/GoogleSingInButton.vue'
+import LoginCard from '@/components/ui/cards/LoginCard.vue'
+
+const localVue = createLocalVue()
+const router = new VueRouter()
+
+localVue.use(VueRouter)
 
 describe('Login.vue', () => {
-  it('should render GoogleSingInButton', () => {
-    const googleSingInButtonWrapper = shallowMount(GoogleSingInButton)
-    const loginWrapper = shallowMount(Login, { components: { GoogleSingInButton } })
-    expect(loginWrapper.text()).toMatch(googleSingInButtonWrapper.text())
+  const wrapper = shallowMount(Login, {
+    localVue,
+    router,
+    computed: {
+      isAuthenticated: () => false
+    }
+  })
+
+  it('should contain LoginCard', () => {
+    expect(wrapper.find(LoginCard).exists()).toBeTruthy()
+  })
+
+  it('should contain GoogleSingInButton', () => {
+    expect(wrapper.find(GoogleSingInButton).exists()).toBeTruthy()
   })
 })
