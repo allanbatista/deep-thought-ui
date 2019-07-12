@@ -10,8 +10,8 @@
 import { mapGetters } from 'vuex'
 
 // components
-import LoginCard from '@/components/ui/cards/LoginCard'
-import GoogleSingInButton from '@/components/ui/buttons/GoogleSingInButton'
+import LoginCard from '@/components/ui/cards/LoginCard.vue'
+import GoogleSingInButton from '@/components/ui/buttons/GoogleSingInButton.vue'
 
 // actions
 import { LOGIN } from '@/store/auth.actions'
